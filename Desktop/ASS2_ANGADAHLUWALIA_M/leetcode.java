@@ -48,6 +48,19 @@ public class leetcode {
         bla.put(nums[i], i);
     }
     return new int[]{0,0};
-   } 
+   }
+   public String longestCommonPrefix(String[] strs) {
+    for(int i=0;i<strs[0].length();i++){
+        char curr=strs[0].charAt(i);
+        for (int j=1;j<strs.length;j++){
+            if(j<strs[j].length()||strs[j].charAt(i)!=curr){
+                return strs[0].substring(0,i);
+            }
+        }
+        
+    }
+        return strs[0];
+    }
+
 
 }
