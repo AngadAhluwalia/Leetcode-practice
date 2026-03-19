@@ -1,6 +1,9 @@
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class leetcode {
     //217. Contains Duplicate
@@ -53,13 +56,38 @@ public class leetcode {
     for(int i=0;i<strs[0].length();i++){
         char curr=strs[0].charAt(i);
         for (int j=1;j<strs.length;j++){
-            if(j<strs[j].length()||strs[j].charAt(i)!=curr){
+            if(i>=strs[j].length()||strs[j].charAt(i)!=curr){
                 return strs[0].substring(0,i);
             }
         }
         
     }
         return strs[0];
+    }
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String,List> anHashMap= new HashMap<>();
+        int[] vals= new int[26];
+        for(String s:strs){
+             Arrays.fill(vals, 0);
+             for(char c:s.toCharArray()){
+                vals[c-'a']++;
+             }
+             StringBuilder sb= new StringBuilder();
+             for(int i=0;i<26;i++){
+                sb.append("#");
+                sb.append(vals[i]);
+             }
+             String key=sb.toString();
+             if(!anHashMap.containsKey(key)){
+                anHashMap.put(key, new ArrayList<>());
+             }
+             else{
+                anHashMap.get(key).add(s);
+             }
+
+        }
+         
+        return new ArrayList(anHashMap.values());
     }
 
 
